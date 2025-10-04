@@ -246,13 +246,7 @@ const Feature = ({ addBmi, addActivity, addFood, foodHistory = [] }) => {
             </label>
 
             <div className="form-actions" style={{ marginTop: 8 }}>
-              <button
-                type="button"
-                className="calc-button"
-                onClick={handleSaveActivity}
-              >
-                Save Activity
-              </button>
+              {/* Save Activity button removed per request; keep Clear Activity */}
               <button
                 type="button"
                 className="clear-button"
