@@ -207,6 +207,99 @@ const Feature = ({
     }
   };
 
+  // Unified save: save activity (if provided), food (if provided), and a combined dataset
+  const handleSaveBoth = () => {
+    setError("");
+    setSavedMessage("");
+    setSavedFoodMessage("");
+
+    if (bmi === null) {
+      setError("Calculate BMI first before saving entries.");
+      return;
+    }
+
+    const burned = parseInt(calories, 10);
+    const intake = parseInt(foodCalories, 10);
+    const dur = parseInt(duration, 10);
+
+    const hasActivityData = !Number.isNaN(burned) || exerciseType.trim() || duration.trim();
+    if (hasActivityData) {
+      if (!exerciseType.trim()) {
+        setError("Please enter an exercise type for activity.");
+        return;
+      }
+      if (!Number.isFinite(dur) || dur <= 0) {
+        setError("Please enter a valid duration in minutes (> 0).");
+        return;
+      }
+      if (!Number.isFinite(burned) || burned < 0) {
+        setError("Please enter valid calories burned (0 or more).");
+        return;
+      }
+    }
+
+    const hasFoodData = !Number.isNaN(intake) || foodType.trim();
+    if (hasFoodData) {
+      if (!foodType.trim()) {
+        setError("Please enter a food name/type for food entry.");
+        return;
+      }
+      if (!Number.isFinite(intake) || intake < 0) {
+        setError("Please enter valid calorie intake (0 or more).");
+        return;
+      }
+    }
+
+    // Save activity if present
+    if (hasActivityData && Number.isFinite(burned)) {
+      const activityEntry = {
+        bmi,
+        weight: Number(weight) || null,
+        height: Number(height) || null,
+        exerciseType: exerciseType.trim(),
+        duration: dur,
+        calories: burned,
+        timestamp: new Date().toLocaleString(),
+      };
+      if (typeof addActivity === "function") addActivity(activityEntry);
+      setSavedMessage("Activity saved.");
+    }
+
+    // Save food if present
+    if (hasFoodData && Number.isFinite(intake)) {
+      const foodEntry = {
+        foodType: foodType.trim(),
+        calories: intake,
+        timestamp: new Date().toLocaleString(),
+      };
+      if (typeof addFood === "function") addFood(foodEntry);
+      setSavedFoodMessage("Food saved.");
+    }
+
+    // Save combined dataset
+    const dataset = {
+      bmi,
+      weight: weight ? Number(weight) : null,
+      height: height ? Number(height) : null,
+      caloriesBurned: Number.isFinite(burned) ? burned : null,
+      caloriesIntake: Number.isFinite(intake) ? intake : null,
+      timestamp: new Date().toLocaleString(),
+    };
+    if (typeof addDataset === "function") {
+      addDataset(dataset);
+      // clear activity/food fields
+      setExerciseType("");
+      setDuration("");
+      setCalories("");
+      setFoodType("");
+      setFoodCalories("");
+    }
+
+    if (!savedMessage && !savedFoodMessage) {
+      setSavedMessage("Data saved.");
+    }
+  };
+
   const category = (val) => {
     if (val == null) return "";
     if (val < 18.5) return "Underweight";
@@ -306,13 +399,6 @@ const Feature = ({
             <div className="form-actions" style={{ marginTop: 8 }}>
               <button
                 type="button"
-                className="calc-button"
-                onClick={handleSaveActivity}
-              >
-                Save Activity
-              </button>
-              <button
-                type="button"
                 className="clear-button"
                 onClick={() => {
                   setExerciseType("");
@@ -360,13 +446,6 @@ const Feature = ({
             <div className="form-actions" style={{ marginTop: 8 }}>
               <button
                 type="button"
-                className="calc-button"
-                onClick={handleSaveFood}
-              >
-                Save Food
-              </button>
-              <button
-                type="button"
                 className="clear-button"
                 onClick={() => {
                   setFoodType("");
@@ -383,6 +462,23 @@ const Feature = ({
                 {savedFoodMessage}
               </p>
             )}
+          </div>
+
+          {/* Unified Save for both activity & food */}
+          <div style={{ marginTop: 14 }}>
+            <button type="button" className="calc-button" onClick={handleSaveBoth}>
+              Save Entry
+            </button>
+            <button
+              type="button"
+              className="clear-button"
+              onClick={() => {
+                setSavedMessage("");
+                setSavedFoodMessage("");
+              }}
+            >
+              Clear Messages
+            </button>
           </div>
         </div>
       )}
