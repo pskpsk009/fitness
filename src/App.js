@@ -42,8 +42,8 @@ const App = () => {
   };
 
   const handleLogin = () => {
-    // After successful login, show a simple choice screen so user can pick Home or the FrontendLogger
-    setCurrentStep("postLoginChoice");
+    // After successful login, go directly to Home
+    setCurrentStep("home");
   };
 
   const handleFrontendLoggerComplete = () => {
