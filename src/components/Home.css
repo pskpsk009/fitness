@@ -1,0 +1,320 @@
+/* Top layout: brand + nav buttons inline, logout on right */
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+/* Group brand and navigation so they stay on the left together */
+.brand-and-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Brand block */
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  margin-right: 6px;
+}
+
+.brand {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  margin: 2px 0 0 0;
+  opacity: 0.85;
+  font-size: 12px;
+}
+
+/* Top navigation buttons (left-to-right after brand) */
+.top-nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.nav-button {
+  background: transparent;
+  color: #e6eef8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.12s ease, transform 0.12s ease;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.nav-button.active {
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+}
+
+/* Actions on the right (Back / Logout) */
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Buttons */
+.logout-button {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ghost-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Main card and content */
+.home-card {
+  background: #0b2447;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.view-title {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.view-content {
+  color: #e6eef8;
+  font-size: 15px;
+}
+
+/* Small dashboard cards */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.card-sm {
+  background: linear-gradient(
+    180deg,
+    rgba(59, 130, 246, 0.12),
+    rgba(59, 130, 246, 0.06)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+  .brand-and-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .top-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+/* Group brand and navigation so they stay on the left together */
+.brand-and-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Brand block */
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  margin-right: 6px;
+}
+
+.brand {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  margin: 2px 0 0 0;
+  opacity: 0.85;
+  font-size: 12px;
+}
+
+/* Top navigation buttons (left-to-right after brand) */
+.top-nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.nav-button {
+  background: transparent;
+  color: #e6eef8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.12s ease, transform 0.12s ease;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.nav-button.active {
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+}
+
+/* Actions on the right (Back / Logout) */
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Buttons */
+.logout-button {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ghost-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Main card and content */
+.home-card {
+  background: #0b2447;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.view-title {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.view-content {
+  color: #e6eef8;
+  font-size: 15px;
+}
+
+/* Small dashboard cards */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.card-sm {
+  background: linear-gradient(
+    180deg,
+    rgba(59, 130, 246, 0.12),
+    rgba(59, 130, 246, 0.06)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+  .brand-and-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .top-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

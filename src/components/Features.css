@@ -1,0 +1,82 @@
+.feature-container {
+  max-width: 700px;
+  margin: 0 auto;
+  color: #e6eef8;
+  text-align: left;
+  padding: 12px;
+}
+
+.feature-title {
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-size: 18px;
+}
+
+.bmi-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.bmi-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #dbeafe;
+}
+
+.bmi-input {
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  color: #fff;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.calc-button,
+.clear-button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.calc-button {
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  color: #fff;
+}
+
+.clear-button {
+  background: transparent;
+  color: #e6eef8;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bmi-result {
+  margin-top: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.error {
+  color: #fecaca;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .bmi-form {
+    grid-template-columns: 1fr;
+  }
+}

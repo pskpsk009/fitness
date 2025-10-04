@@ -1,0 +1,8 @@
+.profile-container {
+  max-width: 700px;
+  margin: 12px auto;
+  padding: 14px;
+  color: #e6eef8;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
