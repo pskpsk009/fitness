@@ -117,6 +117,19 @@ const Feature = ({
       setDuration("");
       setCalories("");
     }
+
+    // Also create a dataset entry so Charts (if using datasets) sees burned calories
+    if (typeof addDataset === "function") {
+      const dataset = {
+        bmi,
+        weight: weight ? Number(weight) : null,
+        height: height ? Number(height) : null,
+        caloriesBurned: Number.isFinite(cal) ? cal : null,
+        caloriesIntake: null,
+        timestamp: new Date().toLocaleString(),
+      };
+      addDataset(dataset);
+    }
   };
 
   const handleSaveFood = () => {
@@ -289,7 +302,13 @@ const Feature = ({
             </label>
 
             <div className="form-actions" style={{ marginTop: 8 }}>
-              {/* Save Activity button removed per request; keep Clear Activity */}
+              <button
+                type="button"
+                className="calc-button"
+                onClick={handleSaveActivity}
+              >
+                Save Activity
+              </button>
               <button
                 type="button"
                 className="clear-button"
