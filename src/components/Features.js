@@ -120,12 +120,14 @@ const Feature = ({
 
     // Also create a dataset entry so Charts (if using datasets) sees burned calories
     if (typeof addDataset === "function") {
+      const intakeParsed = parseInt(foodCalories, 10);
       const dataset = {
         bmi,
         weight: weight ? Number(weight) : null,
         height: height ? Number(height) : null,
         caloriesBurned: Number.isFinite(cal) ? cal : null,
-        caloriesIntake: null,
+        // include current foodCalories if user entered it, otherwise null
+        caloriesIntake: Number.isFinite(intakeParsed) ? intakeParsed : null,
         timestamp: new Date().toLocaleString(),
       };
       addDataset(dataset);
