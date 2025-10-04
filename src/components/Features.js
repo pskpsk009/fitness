@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./Features.css";
 
-const Feature = ({ addBmi, addActivity, addFood, foodHistory = [] }) => {
+const Feature = ({
+  addBmi,
+  addActivity,
+  addFood,
+  addDataset,
+  foodHistory = [],
+}) => {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [bmi, setBmi] = useState(null);
@@ -146,6 +152,43 @@ const Feature = ({ addBmi, addActivity, addFood, foodHistory = [] }) => {
       setSavedFoodMessage("Food saved locally (no handler).");
       setFoodType("");
       setFoodCalories("");
+    }
+  };
+
+  const handleSaveDataset = () => {
+    setError("");
+    // require bmi to be present
+    if (bmi === null) {
+      setError("Calculate BMI first before saving a dataset.");
+      return;
+    }
+
+    const burned = parseInt(calories, 10);
+    const intake = parseInt(foodCalories, 10);
+
+    const dataset = {
+      bmi,
+      weight: weight ? Number(weight) : null,
+      height: height ? Number(height) : null,
+      caloriesBurned: Number.isFinite(burned) ? burned : null,
+      caloriesIntake: Number.isFinite(intake) ? intake : null,
+      timestamp: new Date().toLocaleString(),
+    };
+
+    if (typeof addDataset === "function") {
+      addDataset(dataset);
+      setSavedMessage("Dataset saved.");
+      // clear activity and food fields
+      setExerciseType("");
+      setDuration("");
+      setCalories("");
+      setFoodType("");
+      setFoodCalories("");
+    } else {
+      // fallback
+      // eslint-disable-next-line no-console
+      console.log("Saved dataset (no handler):", dataset);
+      setSavedMessage("Dataset saved locally (no handler).");
     }
   };
 

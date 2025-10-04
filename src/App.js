@@ -11,6 +11,7 @@ const App = () => {
   const [bmiHistory, setBmiHistory] = useState([]);
   const [activities, setActivities] = useState([]);
   const [foodHistory, setFoodHistory] = useState([]);
+  const [datasets, setDatasets] = useState([]);
 
   const addBmi = (entry) => {
     // entry: { value: number, timestamp: string }
@@ -23,6 +24,11 @@ const App = () => {
   const addFood = (entry) => {
     // entry: { foodType, calories, timestamp }
     setFoodHistory((prev) => [...prev, entry]);
+  };
+
+  const addDataset = (entry) => {
+    // entry: { bmi, weight, height, caloriesBurned, caloriesIntake, timestamp }
+    setDatasets((prev) => [...prev, entry]);
   };
 
   useEffect(() => {
@@ -138,6 +144,8 @@ const App = () => {
           addActivity={addActivity}
           foodHistory={foodHistory}
           addFood={addFood}
+          datasets={datasets}
+          addDataset={addDataset}
         />
       )}
 

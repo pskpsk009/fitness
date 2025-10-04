@@ -14,6 +14,8 @@ const Home = ({
   addActivity,
   foodHistory = [],
   addFood,
+  datasets = [],
+  addDataset,
 }) => {
   const [active, setActive] = useState("Dashboard");
 
@@ -30,16 +32,19 @@ const Home = ({
             addActivity={addActivity}
             foodHistory={foodHistory}
             addFood={addFood}
+            datasets={datasets}
+            addDataset={addDataset}
           />
         );
       case "History":
-        return <History bmiHistory={bmiHistory} />;
+        return <History bmiHistory={bmiHistory} datasets={datasets} />;
       case "Charts":
         return (
           <Charts
             bmiHistory={bmiHistory}
             activities={activities}
             foodHistory={foodHistory}
+            datasets={datasets}
           />
         );
       case "Profile":
