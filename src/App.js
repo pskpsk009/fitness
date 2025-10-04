@@ -8,6 +8,22 @@ import Home from "./components/Home";
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState("popup"); // Manage the current step in the flow
+  const [bmiHistory, setBmiHistory] = useState([]);
+  const [activities, setActivities] = useState([]);
+  const [foodHistory, setFoodHistory] = useState([]);
+
+  const addBmi = (entry) => {
+    // entry: { value: number, timestamp: string }
+    setBmiHistory((prev) => [...prev, entry]);
+  };
+  const addActivity = (entry) => {
+    // entry: { bmi, weight, height, exerciseType, duration, calories, timestamp }
+    setActivities((prev) => [...prev, entry]);
+  };
+  const addFood = (entry) => {
+    // entry: { foodType, calories, timestamp }
+    setFoodHistory((prev) => [...prev, entry]);
+  };
 
   useEffect(() => {
     console.log("Current step:", currentStep); // Debug log for state transitions
@@ -116,6 +132,12 @@ const App = () => {
         <Home
           onBack={() => setCurrentStep("postLoginChoice")}
           onLogout={() => setCurrentStep("login")}
+          bmiHistory={bmiHistory}
+          addBmi={addBmi}
+          activities={activities}
+          addActivity={addActivity}
+          foodHistory={foodHistory}
+          addFood={addFood}
         />
       )}
 

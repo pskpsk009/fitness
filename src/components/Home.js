@@ -5,7 +5,16 @@ import History from "./History";
 import Charts from "./Charts";
 import Profile from "./Profile";
 
-const Home = ({ onLogout, onBack }) => {
+const Home = ({
+  onLogout,
+  onBack,
+  bmiHistory = [],
+  addBmi,
+  activities = [],
+  addActivity,
+  foodHistory = [],
+  addFood,
+}) => {
   const [active, setActive] = useState("Dashboard");
 
   const tabs = ["Features", "History", "Charts", "Profile"];
@@ -13,13 +22,28 @@ const Home = ({ onLogout, onBack }) => {
   const renderContent = () => {
     switch (active) {
       case "Features":
-        return <Feature />;
+        return (
+          <Feature
+            bmiHistory={bmiHistory}
+            addBmi={addBmi}
+            activities={activities}
+            addActivity={addActivity}
+            foodHistory={foodHistory}
+            addFood={addFood}
+          />
+        );
       case "History":
-        return <History />;
+        return <History bmiHistory={bmiHistory} />;
       case "Charts":
-        return <Charts />;
+        return (
+          <Charts
+            bmiHistory={bmiHistory}
+            activities={activities}
+            foodHistory={foodHistory}
+          />
+        );
       case "Profile":
-        return <Profile />;
+        return <Profile bmiHistory={bmiHistory} />;
       default:
         return (
           <div className="content-grid">
